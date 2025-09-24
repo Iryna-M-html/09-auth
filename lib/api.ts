@@ -1,34 +1,57 @@
 import axios from "axios";
+import type { Note, NoteTag } from "../types/note";
 
-export type Note = {
-  id: string;
+const apiClient = axios.create({
+  baseURL: "https://notehub-public.goit.study/api",
+});
+
+apiClient.interceptors.request.use((config) => {
+  const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+export interface FetchNotesResponse {
+  notes: Note[];
+  totalPages: number;
+}
+
+interface FetchNotesParams {
+  page?: number;
+  query?: string;
+}
+
+export interface NewNotePayload {
   title: string;
   content: string;
-  categoryId: string;
-  userId: string;
-  createdAt: string;
-  updatedAt: string;
+  tag: NoteTag;
+}
+
+export const fetchNotes = async ({
+  page = 1,
+  query = "",
+}: FetchNotesParams): Promise<FetchNotesResponse> => {
+  const response = await apiClient.get<FetchNotesResponse>("/notes", {
+    params: {
+      page,
+      perPage: 12,
+      ...(query ? { search: query } : {}),
+    },
+  });
+  return response.data;
 };
 
-export type NoteListResponse = {
-  notes: Note[];
-  total: number;
+export const createNote = async (noteData: NewNotePayload): Promise<Note> => {
+  const response = await apiClient.post<Note>("/notes", noteData);
+  return response.data;
 };
 
-axios.defaults.baseURL = "https://next-docs-api.onrender.com";
-
-// export const getNotes = async () => {
-//   const res = await axios.get<NoteListResponse>("/notes");
-//   return res.data;
-// };
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
-export const getNotes = async () => {
-  await delay(2000);
-  const res = await axios.get<NoteListResponse>("/notes");
-  return res.data;
-};
-export const getSingleNote = async (id: string) => {
-  const res = await axios.get<Note>(`/notes/${id}`);
-  return res.data;
+export const deleteNote = async (noteId: string): Promise<Note> => {
+  if (!noteId) {
+    throw new Error("Note ID is required for deletion");
+  }
+  const response = await apiClient.delete<Note>(`/notes/${noteId}`);
+  return response.data;
 };

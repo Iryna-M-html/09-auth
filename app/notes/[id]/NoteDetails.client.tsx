@@ -8,16 +8,10 @@ import Pagination from "../../../components/Pagination/Pagination";
 import NoteList from "../../../components/NoteList/NoteList";
 import Modal from "../../../components/Modal/Modal";
 import NoteForm from "../../../components/NoteForm/NoteForm";
-
-// ✅ Импортируем тип Note из общего файла
+import { NotesPageClientProps } from "../../../types/note";
 import { Note } from "@/types/note";
 
-interface NotesPageClientProps {
-  initialNotes: Note[];
-  initialTotalPages: number;
-}
-
-const NotesPageClient = ({
+export const NoteDetailsClient: React.FC<NotesPageClientProps> = ({
   initialNotes,
   initialTotalPages,
 }: NotesPageClientProps) => {
@@ -30,14 +24,14 @@ const NotesPageClient = ({
     const newPage = selected + 1;
     setPage(newPage);
     const data = await fetchNotes({ page: newPage, query });
-    setNotes(data.notes); // data.notes должен быть Note[]
+    setNotes(data.notes);
   };
 
   const handleSearchChange = async (value: string) => {
     setQuery(value);
     setPage(1);
     const data = await fetchNotes({ page: 1, query: value });
-    setNotes(data.notes); // data.notes должен быть Note[]
+    setNotes(data.notes);
   };
 
   return (
@@ -56,7 +50,7 @@ const NotesPageClient = ({
   );
 };
 
-export default NotesPageClient;
+export default NoteDetailsClient;
 
 // "use client";
 

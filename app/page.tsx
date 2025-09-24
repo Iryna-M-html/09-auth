@@ -1,3 +1,4 @@
+//"use client";
 import { fetchNotes } from "@/lib/api";
 
 import NoteList from "../components/NoteList/NoteList";

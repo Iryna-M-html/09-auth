@@ -1,22 +1,3 @@
-// import { Note } from "@/lib/api";
-// import NoteItem from "../NoteItem/NotItem";
-
-// type Props = {
-//   notes: Note[];
-// };
-
-// const NoteList = ({ notes }: Props) => {
-//   return (
-//     <ul>
-//       {notes.map((note) => (
-//         <NoteItem key={note.id} item={note} />
-//       ))}
-//     </ul>
-//   );
-// };
-
-// export default NoteList;
-
 import type { Note } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteNote } from "@/lib/api";

@@ -9,7 +9,7 @@ import { fetchNoteById } from "@/lib/api";
 import { Note } from "@/types/note";
 
 interface NoteDetailsPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: number }>;
 }
 
 export default async function NoteDetailsPage({

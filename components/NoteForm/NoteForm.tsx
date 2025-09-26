@@ -10,7 +10,6 @@ import type { Note, NoteTag } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote, type NewNotePayload } from "@/lib/api";
 
-// Схема валідації форми
 const validationSchema = Yup.object({
   title: Yup.string()
     .min(3, "Title must be at least 3 characters")

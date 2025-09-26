@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import css from "./Modal.module.css";
 
-const modalRoot = document.body;
-
 interface ModalProps {
   isOpen: boolean;
 
@@ -40,7 +38,7 @@ const Modal = ({
   };
 
   if (!isOpen) return null;
-
+  const modalRoot = document.body;
   return createPortal(
     <div
       className={css.backdrop}

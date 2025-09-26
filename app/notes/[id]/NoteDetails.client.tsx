@@ -3,11 +3,11 @@
 
 import { useState } from "react";
 import { fetchNotes } from "@/lib/api";
-import SearchBox from "../../../components/SearchBox/SearchBox";
-import Pagination from "../../../components/Pagination/Pagination";
+// import SearchBox from "../../../components/SearchBox/SearchBox";
+// import Pagination from "../../../components/Pagination/Pagination";
 import NoteList from "../../../components/NoteList/NoteList";
-import Modal from "../../../components/Modal/Modal";
-import NoteForm from "../../../components/NoteForm/NoteForm";
+// import Modal from "../../../components/Modal/Modal";
+// import NoteForm from "../../../components/NoteForm/NoteForm";
 import { NotesPageClientProps } from "../../../types/note";
 import { Note } from "@/types/note";
 
@@ -18,7 +18,7 @@ export const NoteDetailsClient: React.FC<NotesPageClientProps> = ({
   const [notes, setNotes] = useState<Note[]>(initialNotes);
   const [page, setPage] = useState<number>(1);
   const [query, setQuery] = useState<string>("");
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  // const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handlePageChange = async ({ selected }: { selected: number }) => {
     const newPage = selected + 1;
@@ -36,23 +36,22 @@ export const NoteDetailsClient: React.FC<NotesPageClientProps> = ({
 
   return (
     <div>
-      <SearchBox value={query} onChange={handleSearchChange} />
-      <Pagination
+      {/* <SearchBox value={query} onChange={handleSearchChange} /> */}
+      {/* <Pagination
         pageCount={initialTotalPages}
         currentPage={page}
         onPageChange={handlePageChange}
-      />
+      /> */}
       <NoteList notes={notes} />
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      {/* <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <NoteForm
           onCancel={() => setIsModalOpen(false)}
           onCreated={() => {}}
           onSave={() => {}}
         />
-      </Modal>
+      </Modal> */}
     </div>
   );
 };
 
 export default NoteDetailsClient;
-

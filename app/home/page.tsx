@@ -1,7 +1,8 @@
+import css from "./Home.module.css";
 export default function HomePage() {
   return (
     <main>
-      {/* <div className={css.container}>
+      <div className={css.container}>
         <h1 className={css.title}>Welcome to NoteHub</h1>
         <p className={css.description}>
           NoteHub is a simple and efficient application designed for managing
@@ -14,7 +15,7 @@ export default function HomePage() {
           NoteHub offers a streamlined experience for anyone who values clarity
           and productivity.
         </p>
-      </div> */}
+      </div>
     </main>
   );
 }

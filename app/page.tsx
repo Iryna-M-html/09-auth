@@ -1,50 +1,66 @@
-//"use client";
 import { fetchNotes } from "@/lib/api";
-
-import NoteList from "../components/NoteList/NoteList";
-import SearchBox from "../components/SearchBox/SearchBox";
-import Pagination from "../components/Pagination/Pagination";
-import Modal from "../components/Modal/Modal";
-import NoteForm from "../components/NoteForm/NoteForm";
-
-import css from "./page.module.css";
+import App from "./App";
 
 interface Props {
-  searchQuery?: string;
-  page?: number;
+  searchParams?: { query?: string; page?: string };
 }
 
-const App = async ({ searchQuery = "", page = 1 }: Props) => {
+export default async function Page({ searchParams }: Props) {
+  const searchQuery = searchParams?.query || "";
+  const page = searchParams?.page ? Number(searchParams.page) : 1;
+
   const notesData = await fetchNotes({ page, query: searchQuery });
 
-  return (
-    <div className={css.app}>
-      <header className={css.toolbar}>
-        {/* SearchBox и Pagination теперь должны быть client components */}
-        <SearchBox value={searchQuery} onChange={() => {}} />
-        {notesData.totalPages > 1 && (
-          <Pagination
-            pageCount={notesData.totalPages}
-            currentPage={page}
-            onPageChange={() => {}}
-          />
-        )}
-        {/* Создание заметки также потребует client component */}
-        <button className={css.button} onClick={() => {}}>
-          Create note +
-        </button>
-      </header>
+  return <App notesData={notesData} searchQuery={searchQuery} page={page} />;
+}
 
-      <main>
-        {notesData.notes.length > 0 && (
-          <NoteList notes={notesData.notes} onDeleted={() => {}} />
-        )}
-      </main>
-    </div>
-  );
-};
+//"use client";
+// import { fetchNotes } from "@/lib/api";
 
-export default App;
+// import NoteList from "../components/NoteList/NoteList";
+// import SearchBox from "../components/SearchBox/SearchBox";
+// import Pagination from "../components/Pagination/Pagination";
+// import Modal from "../components/Modal/Modal";
+// import NoteForm from "../components/NoteForm/NoteForm";
+
+// import css from "./page.module.css";
+
+// interface Props {
+//   searchQuery?: string;
+//   page?: number;
+// }
+
+// const App = async ({ searchQuery = "", page = 1 }: Props) => {
+//   const notesData = await fetchNotes({ page, query: searchQuery });
+
+//   return (
+//     <div className={css.app}>
+//       <header className={css.toolbar}>
+//         {/* SearchBox и Pagination теперь должны быть client components */}
+//         <SearchBox value={searchQuery} onChange={() => {}} />
+//         {notesData.totalPages > 1 && (
+//           <Pagination
+//             pageCount={notesData.totalPages}
+//             currentPage={page}
+//             onPageChange={() => {}}
+//           />
+//         )}
+//         {/* Создание заметки также потребует client component */}
+//         <button className={css.button} onClick={() => {}}>
+//           Create note +
+//         </button>
+//       </header>
+
+//       <main>
+//         {notesData.notes.length > 0 && (
+//           <NoteList notes={notesData.notes} onDeleted={() => {}} />
+//         )}
+//       </main>
+//     </div>
+//   );
+// };
+
+// export default App;
 
 // import { useEffect, useState } from "react";
 // import { useQuery, keepPreviousData } from "@tanstack/react-query";

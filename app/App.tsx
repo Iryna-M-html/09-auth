@@ -51,7 +51,7 @@ export default function App({ searchQuery, page, notesData }: Props) {
         )}
       </main>
       <footer className={css.footer}>
-        <div className={css.content}>
+        {/* <div className={css.content}>
           <p>© {new Date().getFullYear()} NoteHub. All rights reserved.</p>
           <div className={css.wrap}>
             <p>Developer: Iryna</p>
@@ -60,7 +60,7 @@ export default function App({ searchQuery, page, notesData }: Props) {
               <a href="mailto: student@notehub.app">student@notehub.app</a>
             </p>
           </div>
-        </div>
+        </div> */}
       </footer>
       <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
         <NoteForm

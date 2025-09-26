@@ -44,7 +44,11 @@ export const NoteDetailsClient: React.FC<NotesPageClientProps> = ({
       />
       <NoteList notes={notes} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <NoteForm onCancel={() => setIsModalOpen(false)} onCreated={() => {}} />
+        <NoteForm
+          onCancel={() => setIsModalOpen(false)}
+          onCreated={() => {}}
+          onSave={() => {}}
+        />
       </Modal>
     </div>
   );

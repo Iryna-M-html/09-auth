@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import NoteList from "@/components/NoteList/NoteList";
 import SearchBox from "@/components/SearchBox/SearchBox";
@@ -19,14 +20,19 @@ interface Props {
 
 export default function App({ searchQuery, page, notesData }: Props) {
   const router = useRouter();
+  const [isModalOpen, setModalOpen] = useState(false);
   const handlePageChange = ({ selected }: { selected: number }) => {
     const nextPage = selected + 1;
     router.push(`?query=${searchQuery}&page=${nextPage}`);
   };
+  const handleSearchChange = (value: string) => {
+    router.push(`?query=${value}&page=1`);
+  };
+
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        <SearchBox value={searchQuery} onChange={() => {}} />
+        <SearchBox value={searchQuery} onChange={handleSearchChange} />
         {notesData.totalPages > 1 && (
           <Pagination
             pageCount={notesData.totalPages}
@@ -34,7 +40,7 @@ export default function App({ searchQuery, page, notesData }: Props) {
             onPageChange={handlePageChange}
           />
         )}
-        <button className={css.button} onClick={() => {}}>
+        <button className={css.button} onClick={() => setModalOpen(true)}>
           Create note +
         </button>
       </header>
@@ -44,6 +50,14 @@ export default function App({ searchQuery, page, notesData }: Props) {
           <NoteList notes={notesData.notes} onDeleted={() => {}} />
         )}
       </main>
+      <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+        <NoteForm
+          onSave={() => setModalOpen(false)}
+          onCancel={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      </Modal>
     </div>
   );
 }

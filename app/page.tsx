@@ -6,8 +6,12 @@ interface Props {
 }
 
 export default async function Page({ searchParams }: Props) {
-  const searchQuery = searchParams?.query || "";
-  const page = searchParams?.page ? Number(searchParams.page) : 1;
+  const params = await searchParams;
+  const searchQuery = params?.query || "";
+  const page = params?.page ? Number(params.page) : 1;
+
+  // const searchQuery = "";
+  // const page = 1;
 
   const notesData = await fetchNotes({ page, query: searchQuery });
 

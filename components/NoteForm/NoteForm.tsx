@@ -34,9 +34,10 @@ const initialValues: NewNotePayload = {
 interface NoteFormProps {
   onCancel: () => void;
   onCreated?: (note: Note) => void;
+  onSave: () => void;
 }
 
-const NoteForm = ({ onCancel, onCreated }: NoteFormProps) => {
+const NoteForm = ({ onCancel, onCreated, onSave }: NoteFormProps) => {
   const queryClient = useQueryClient();
 
   const createMutation = useMutation({

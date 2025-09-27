@@ -93,4 +93,5 @@ export default function App({ searchQuery, page, notesData }: Props) {
       </div>
     </section>
   );
+  ////
 }

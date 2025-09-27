@@ -1,6 +1,6 @@
 "use client";
 import NoteList from "@/components/NoteList/NoteList";
-import { fetchNotes } from "@/lib/api";
+//import { fetchNotes } from "@/lib/api";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -11,8 +11,8 @@ import NoteForm from "@/components/NoteForm/NoteForm";
 
 import css from "../page.module.css";
 import { Note } from "@/types/note";
-import Page from "../page";
-import type PropsPar from "../page";
+//import Page from "../page";
+//import type PropsPar from "../page";
 
 interface Props {
   searchQuery: string;

@@ -5,13 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import css from "./NoteDetails.module.css";
 import { fetchNoteById } from "@/lib/api";
 //import LoadingIndicator from "../../loading";
-import ErrorMessage from "../error";
+//import ErrorMessage from "../error";
 import { useParams } from "next/navigation";
 
 export default function NoteDetailsClient() {
   const { id } = useParams<{ id: string }>();
   const noteId = Number(id);
-  const { data, isLoading, isError, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(noteId),
     refetchOnMount: false,

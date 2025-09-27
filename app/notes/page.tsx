@@ -1,7 +1,7 @@
 "use client";
 import NoteList from "@/components/NoteList/NoteList";
 //import { fetchNotes } from "@/lib/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import SearchBox from "@/components/SearchBox/SearchBox";

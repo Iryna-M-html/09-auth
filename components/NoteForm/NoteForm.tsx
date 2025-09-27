@@ -36,7 +36,7 @@ interface NoteFormProps {
   onSave: () => void;
 }
 
-const NoteForm = ({ onCancel, onCreated, onSave }: NoteFormProps) => {
+const NoteForm = ({ onCancel, onCreated }: NoteFormProps) => {
   const queryClient = useQueryClient();
 
   const createMutation = useMutation({

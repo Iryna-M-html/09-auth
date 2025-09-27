@@ -53,7 +53,7 @@ export default function App({ searchQuery, page, notesData }: Props) {
               onPageChange={handlePageChange}
             />
           )}
-          {/* {notesData.totalPages > 1 && (
+          {/* {notesData.totalPages > 1 &&  (
             <Pagination
               pageCount={notesData.totalPages}
               currentPage={page}

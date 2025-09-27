@@ -1,5 +1,5 @@
 import { fetchNotes } from "@/lib/api";
-import App from "./pageClient";
+import App from "./NotesClient";
 
 export interface PropsPar {
   searchParams?: { query?: string; page?: string };

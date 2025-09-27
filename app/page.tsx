@@ -4,6 +4,6 @@ export interface PropsPar {
   searchParams?: { query?: string; page?: string };
 }
 
-export default async function Page({ searchParams }: PropsPar) {
+export default async function Page() {
   return HomePage();
 }

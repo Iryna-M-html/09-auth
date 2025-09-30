@@ -2,35 +2,61 @@
 import ReactPaginate from "react-paginate";
 import css from "./Pagination.module.css";
 
+// interface PaginationProps {
+//   pageCount: number;
+//   onPageChange: (selectedItem: { selected: number }) => void;
+//   currentPage: number;
+// }
+
+// const Pagination = ({
+//   pageCount,
+//   onPageChange,
+//   currentPage,
+// }: PaginationProps) => {
+//   return (
+//     <ReactPaginate
+//       previousLabel={"←"}
+//       nextLabel={"→"}
+//       breakLabel={"..."}
+//       pageCount={pageCount}
+//       marginPagesDisplayed={2}
+//       pageRangeDisplayed={3}
+//       onPageChange={onPageChange}
+//       forcePage={Math.max(0, (currentPage || 1) - 1)}
+//       containerClassName={css.pagination}
+//       activeClassName={css.active}
+//       pageLinkClassName={css.pageLink}
+//       previousLinkClassName={css.pageLink}
+//       nextLinkClassName={css.pageLink}
+//       breakLinkClassName={css.pageLink}
+//     />
+//   );
+// };
+
+// export default Pagination;
 interface PaginationProps {
-  pageCount: number;
-  onPageChange: (selectedItem: { selected: number }) => void;
-  currentPage: number;
+  page: number;
+  totalPages: number;
+  onPageChange: (selectedPage: number) => void;
 }
 
-const Pagination = ({
-  pageCount,
+export default function Pagination({
+  page,
+  totalPages,
   onPageChange,
-  currentPage,
-}: PaginationProps) => {
+}: PaginationProps) {
+  if (totalPages <= 1) return null;
   return (
     <ReactPaginate
-      previousLabel={"←"}
-      nextLabel={"→"}
-      breakLabel={"..."}
-      pageCount={pageCount}
-      marginPagesDisplayed={2}
-      pageRangeDisplayed={3}
-      onPageChange={onPageChange}
-      forcePage={Math.max(0, (currentPage || 1) - 1)}
+      pageCount={totalPages}
+      pageRangeDisplayed={5}
+      marginPagesDisplayed={1}
+      onPageChange={({ selected }) => onPageChange(selected + 1)}
+      forcePage={page - 1}
       containerClassName={css.pagination}
       activeClassName={css.active}
-      pageLinkClassName={css.pageLink}
-      previousLinkClassName={css.pageLink}
-      nextLinkClassName={css.pageLink}
-      breakLinkClassName={css.pageLink}
+      nextLabel="→"
+      previousLabel="←"
     />
   );
-};
-
-export default Pagination;
+}

@@ -15,6 +15,7 @@ apiClient.interceptors.request.use((config) => {
 
 export interface FetchNotesResponse {
   notes: Note[];
+  page: number;
   totalPages: number;
 }
 
@@ -29,19 +30,24 @@ export interface NewNotePayload {
   tag: NoteTag;
 }
 
-export const fetchNotes = async ({
+export async function fetchNotes(
   page = 1,
-  query = "",
-}: FetchNotesParams): Promise<FetchNotesResponse> => {
-  const response = await apiClient.get<FetchNotesResponse>("/notes", {
-    params: {
-      page,
-      perPage: 12,
-      ...(query ? { search: query } : {}),
-    },
-  });
+  perPage = 12,
+  search = ""
+): Promise<FetchNotesResponse> {
+  const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
+  const response = await axios.get<FetchNotesResponse>(
+    
+    "https://notehub-public.goit.study/api/notes",
+    {
+      params: { page, perPage, search },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return response.data;
-};
+}
 
 export const createNote = async (noteData: NewNotePayload): Promise<Note> => {
   const response = await apiClient.post<Note>("/notes", noteData);

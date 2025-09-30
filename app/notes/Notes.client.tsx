@@ -65,11 +65,7 @@ export default function NotesClient({
       {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
       {isModalOpen && (
         <Modal onClose={closeModal} isOpen={true}>
-          <NoteForm
-            onCancel={closeModal}
-            onCreated={() => {}}
-            onSave={() => {}}
-          />
+          <NoteForm onCancel={closeModal} onCreated={() => {}} />
         </Modal>
       )}
     </div>

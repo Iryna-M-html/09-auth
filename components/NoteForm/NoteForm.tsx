@@ -33,7 +33,6 @@ const initialValues: NewNotePayload = {
 interface NoteFormProps {
   onCancel: () => void;
   onCreated?: (note: Note) => void;
-  onSave: () => void;
 }
 
 const NoteForm = ({ onCancel, onCreated }: NoteFormProps) => {

@@ -9,13 +9,23 @@ interface NoteDetailsClientProps {
 }
 
 export default function NoteDetailsClient({ id }: NoteDetailsClientProps) {
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["note", id],
     queryFn: () => fetchNoteById(id),
     refetchOnMount: false,
   });
 
-  if (!data) return <p className={css.text}>Something went wrong.</p>;
+  if (isLoading) {
+    return <p className={css.text}>Завантаження...</p>;
+  }
+
+  if (isError) {
+    return <p className={css.text}>Помилка завантаження нотатки.</p>;
+  }
+
+  if (!data) {
+    return <p className={css.text}>Нотатку не знайдено.</p>;
+  }
 
   const formattedDate = data.updatedAt
     ? `Updated at: ${data.updatedAt}`

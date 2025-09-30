@@ -56,7 +56,7 @@ export const deleteNote = async (noteId: string): Promise<Note> => {
   const response = await apiClient.delete<Note>(`/notes/${noteId}`);
   return response.data;
 };
-export const fetchNoteById = async (id: number): Promise<Note> => {
+export const fetchNoteById = async (id: string): Promise<Note> => {
   if (!id) {
     throw new Error("Note ID is required");
   }

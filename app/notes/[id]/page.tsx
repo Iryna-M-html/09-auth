@@ -7,7 +7,7 @@ import {
 import NoteDetailsClient from "./NoteDetails.client";
 
 interface NoteDetailsProps {
-  params: Promise<{ id: number }>;
+  params: Promise<{ id: string }>;
 }
 
 export default async function NoteDetails({ params }: NoteDetailsProps) {

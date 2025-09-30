@@ -10,10 +10,10 @@ import { useParams } from "next/navigation";
 
 export default function NoteDetailsClient() {
   const { id } = useParams<{ id: string }>();
-  const noteId = Number(id);
+  //const noteId = Number(id);
   const { data } = useQuery({
     queryKey: ["note", id],
-    queryFn: () => fetchNoteById(noteId),
+    queryFn: () => fetchNoteById(id),
     refetchOnMount: false,
   });
 

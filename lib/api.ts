@@ -15,13 +15,14 @@ apiClient.interceptors.request.use((config) => {
 
 export interface FetchNotesResponse {
   notes: Note[];
-  page: number;
+  //page: number;
   totalPages: number;
 }
 
 interface FetchNotesParams {
   page?: number;
-  query?: string;
+  search?: string;
+  perPage?: number;
 }
 
 export interface NewNotePayload {
@@ -35,17 +36,9 @@ export async function fetchNotes(
   perPage = 12,
   search = ""
 ): Promise<FetchNotesResponse> {
-  const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
-  const response = await axios.get<FetchNotesResponse>(
-    
-    "https://notehub-public.goit.study/api/notes",
-    {
-      params: { page, perPage, search },
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const response = await apiClient.get<FetchNotesResponse>("/notes", {
+    params: { page, perPage, search },
+  });
   return response.data;
 }
 

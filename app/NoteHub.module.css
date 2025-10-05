@@ -1,3 +1,9 @@
+html,
+body {
+  height: 100%; /* растягиваем на весь экран */
+  margin: 0;
+}
+
 .main {
   flex: 1;
 }

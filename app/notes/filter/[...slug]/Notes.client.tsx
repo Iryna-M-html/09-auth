@@ -12,11 +12,12 @@ import NoteForm from "@/components/NoteForm/NoteForm";
 import { useEffect, useState } from "react";
 import LoadingIndicator from "../../../loading";
 import ErrorMessage from "./error";
+import { NoteTag } from "@/types/note";
 
 interface NoteClientProps {
   noteClientPage: number;
   noteClientSearch: string;
-  tag?: string;
+  tag?: NoteTag | undefined;
 }
 
 export default function NotesClient({

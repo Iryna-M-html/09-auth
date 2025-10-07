@@ -1,6 +1,5 @@
 import axios from "axios";
 import type { Note, NoteTag } from "../types/note";
-import { array } from "yup";
 
 const apiClient = axios.create({
   baseURL: "https://notehub-public.goit.study/api",
@@ -16,7 +15,7 @@ apiClient.interceptors.request.use((config) => {
 
 export interface FetchNotesResponse {
   notes: Note[];
-  //page: number;
+
   totalPages: number;
 }
 
@@ -35,13 +34,13 @@ export async function fetchNotes(
   page = 1,
   perPage = 12,
   search = "",
-  tag = ""
+  tag?: NoteTag
 ): Promise<FetchNotesResponse> {
   const response = await apiClient.get<FetchNotesResponse>("/notes", {
-    params: { page, perPage, search },
+    params: { page, perPage, search, tag },
   });
   const notes = response.data;
-  if (tag === "") return notes;
+  if (!tag) return notes;
 
   const notes_filtered = notes;
   notes_filtered.notes = notes.notes.filter((note) => note.tag === tag);
@@ -53,7 +52,6 @@ export const createNote = async (noteData: NewNotePayload): Promise<Note> => {
   return response.data;
 };
 
-///////
 export const deleteNote = async (noteId: string): Promise<Note> => {
   if (!noteId) {
     throw new Error("Note ID is required for deletion");
@@ -71,13 +69,6 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
 
 export const getSingleNote = fetchNoteById;
 
-// export const getCategories = async (tag: string): Promise<Note> => {
-//   if (!tag) {
-//     throw new Error("Note tag is required");
-//   }
-//   const response = await apiClient.get<Note>(`/notes/${tag}`);
-//   return response.data;
-// };
 export interface Category {
   id: string;
   title: string;
@@ -86,11 +77,3 @@ export interface Category {
   updatedAt: string;
   tag: NoteTag;
 }
-
-export const getCategories = async (): Promise<NoteTag[]> => {
-  const response = await apiClient.get<Note[]>("/notes");
-  const notes = response.data;
-
-  const tags = Array.from(new Set(notes.map((note) => note.tag)));
-  return tags;
-};

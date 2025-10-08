@@ -39,12 +39,7 @@ export async function fetchNotes(
   const response = await apiClient.get<FetchNotesResponse>("/notes", {
     params: { page, perPage, search, tag },
   });
-  const notes = response.data;
-  if (!tag) return notes;
-
-  const notes_filtered = notes;
-  notes_filtered.notes = notes.notes.filter((note) => note.tag === tag);
-  return notes_filtered;
+  return response.data;
 }
 
 export const createNote = async (noteData: NewNotePayload): Promise<Note> => {

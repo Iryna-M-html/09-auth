@@ -30,7 +30,7 @@ const FilterPage = async ({ params }: FiltersPageProps) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotesClient tag={tag} noteClientPage={page} noteClientSearch={search} />
+      <NotesClient tag={tag} />
     </HydrationBoundary>
   );
 };

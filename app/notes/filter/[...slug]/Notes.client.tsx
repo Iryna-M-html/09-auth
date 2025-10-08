@@ -15,28 +15,22 @@ import ErrorMessage from "./error";
 import { NoteTag } from "@/types/note";
 
 interface NoteClientProps {
-  noteClientPage: number;
-  noteClientSearch: string;
   tag?: NoteTag | undefined;
 }
 
-export default function NotesClient({
-  noteClientPage,
-  noteClientSearch,
-  tag,
-}: NoteClientProps) {
-  const [page, setPage] = useState(noteClientPage);
+export default function NotesClient({ tag }: NoteClientProps) {
+  const [page, setPage] = useState(1);
   const [perPage] = useState(12);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(noteClientSearch);
+  const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
 
   useEffect(() => {
     setPage(1);
-  }, [debouncedSearchTerm]);
+  }, [searchTerm]);
 
   const { data, isLoading, isError, error } = useQuery<FetchNotesResponse>({
-    queryKey: ["notes", page, perPage, debouncedSearchTerm],
+    queryKey: ["notes", page, perPage, debouncedSearchTerm, tag],
     queryFn: () => fetchNotes(page, perPage, debouncedSearchTerm, tag),
     placeholderData: keepPreviousData,
   });

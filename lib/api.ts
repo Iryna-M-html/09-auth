@@ -68,12 +68,3 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
 };
 
 export const getSingleNote = fetchNoteById;
-
-export interface Category {
-  id: string;
-  title: string;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  tag: NoteTag;
-}

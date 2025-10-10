@@ -8,7 +8,9 @@ const SidebarNotes = () => {
   // const { notes } = await fetchNotes();
   return (
     <>
-      <Link href="/notes/action/create">Create note</Link>
+      <Link href="/notes/action/create" className={css.menuLink}>
+        Create note
+      </Link>
       {/* <ul>
         <li>
           <Link href={`/notes/filter/all`}>All notes</Link>

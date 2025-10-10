@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/GoIT/Projects/dz/next/next-module-3-4/app/profile/edit/page.tsx"],"sourcesContent":["import { Metadata } from \"next\";\r\n\r\nexport const metadata: Metadata = {\r\n  title: \"Edit Profile\",\r\n  description: \"Edit your user details and settings\",\r\n};\r\n\r\nconst EditProfile = () => {\r\n  return <div>EditProfile</div>;\r\n};\r\n\r\nexport default EditProfile;\r\n"],"names":[],"mappings":";;;;;;;;AAEO,MAAM,WAAqB;IAChC,OAAO;IACP,aAAa;AACf;AAEA,MAAM,cAAc;IAClB,qBAAO,8OAAC;kBAAI;;;;;;AACd;uCAEe","debugId":null}}]
+}

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/GoIT/Projects/dz/next/next-module-3-4/app/notes/%5Bid%5D/error.tsx"],"sourcesContent":["\"use client\";\r\n\r\ntype Props = {\r\n  error: Error;\r\n  //reset: () => void;\r\n};\r\n\r\nconst Error = ({ error }: Props) => {\r\n  return (\r\n    <div>\r\n      <p>Could not fetch the list of notes. {error.message}</p>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default Error;\r\n"],"names":[],"mappings":";;;;;AAAA;;AAOA,MAAM,QAAQ,CAAC,EAAE,KAAK,EAAS;IAC7B,qBACE,8OAAC;kBACC,cAAA,8OAAC;;gBAAE;gBAAoC,MAAM,OAAO;;;;;;;;;;;;AAG1D;uCAEe","debugId":null}}]
+}

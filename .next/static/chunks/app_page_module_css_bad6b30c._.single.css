@@ -1,0 +1,37 @@
+/* [project]/app/page.module.css [app-client] (css) */
+.page-module__E0kJGG__app {
+  flex-direction: column;
+  width: 90%;
+  max-width: 1280px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 16px 16px;
+  display: flex;
+}
+
+.page-module__E0kJGG__toolbar {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 16px 0;
+  display: flex;
+}
+
+.page-module__E0kJGG__button {
+  color: #fff;
+  cursor: pointer;
+  background-color: #0d6efd;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 16px;
+  transition: background-color .2s;
+}
+
+.page-module__E0kJGG__button:hover {
+  background-color: #0b5ed7;
+}
+
+/*# sourceMappingURL=app_page_module_css_bad6b30c._.single.css.map*/

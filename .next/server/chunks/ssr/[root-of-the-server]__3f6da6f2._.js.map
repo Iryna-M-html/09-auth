@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 31, "column": 0}, "map": {"version":3,"sources":["file:///C:/GoIT/Projects/dz/next/next-module-3-4/app/%40modal/default.tsx"],"sourcesContent":["const DefaultModal = () => {\r\n  return null;\r\n};\r\n\r\nexport default DefaultModal;\r\n"],"names":[],"mappings":";;;;AAAA,MAAM,eAAe;IACnB,OAAO;AACT;uCAEe","debugId":null}}]
+}

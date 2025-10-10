@@ -1,4 +1,6 @@
 import css from "./NoteHub.module.css";
+import Image from "next/image";
+
 export default function NoteHub() {
   return (
     <main>
@@ -16,6 +18,7 @@ export default function NoteHub() {
           and productivity.
         </p>
       </div>
+      <Image src="/test.png" alt="test" width={500} height={300} />
     </main>
   );
 }

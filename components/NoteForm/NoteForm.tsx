@@ -9,6 +9,7 @@ import css from "./NoteForm.module.css";
 import type { Note, NoteTag } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote, type NewNotePayload } from "@/lib/api";
+import { useNoteDraftStore } from "@/lib/stores/noteStore";
 
 const validationSchema = Yup.object({
   title: Yup.string()

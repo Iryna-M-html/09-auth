@@ -807,6 +807,17 @@ self.__BUILD_MANIFEST = {
         ],
         "source": "/notes/:id",
         "destination": "/(.)notes/:id"
+      },
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
       }
     ],
     "fallback": []

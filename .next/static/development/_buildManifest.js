@@ -1,7 +1,96 @@
 self.__BUILD_MANIFEST = {
   "__rewrites": {
     "afterFiles": [],
-    "beforeFiles": [],
+    "beforeFiles": [
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
+      },
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
+      },
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
+      },
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
+      },
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
+      },
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
+      },
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
+      },
+      {
+        "has": [
+          {
+            "type": "header",
+            "key": "next-url",
+            "value": "(?:\\/(.*))?[\\/#\\?]?"
+          }
+        ],
+        "source": "/notes/:id",
+        "destination": "/(.)notes/:id"
+      }
+    ],
     "fallback": []
   },
   "sortedPages": [

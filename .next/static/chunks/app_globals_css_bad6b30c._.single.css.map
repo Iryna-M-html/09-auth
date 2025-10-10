@@ -2,5 +2,5 @@
   "version": 3,
   "sources": [],
   "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/globals.css"],"sourcesContent":["body {\r\n  font-family:\r\n    -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu,\r\n    Cantarell, \"Helvetica Neue\", sans-serif;\r\n  display: flex;\r\n  flex-direction: column;\r\n  min-height: 100vh;\r\n  margin: 0;\r\n  background-color: #f8f9fa;\r\n}\r\n"],"names":[],"mappings":"AAAA"}}]
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/globals.css"],"sourcesContent":["/* body {\r\n  font-family:\r\n    -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen, Ubuntu,\r\n    Cantarell, \"Helvetica Neue\", sans-serif;\r\n  display: flex;\r\n  flex-direction: column;\r\n  min-height: 100vh;\r\n  margin: 0;\r\n  background-color: #f8f9fa;\r\n} */\r\nbody {\r\n  color: var(--foreground);\r\n  background: var(--background);\r\n  font-family: var(--font-roboto), sans-serif;\r\n  -webkit-font-smoothing: antialiased;\r\n  -moz-osx-font-smoothing: grayscale;\r\n}\r\n"],"names":[],"mappings":"AAUA"}}]
 }

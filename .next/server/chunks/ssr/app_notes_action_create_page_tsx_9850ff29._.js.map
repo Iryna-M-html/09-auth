@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["file:///C:/GoIT/Projects/dz/next/next-module-3-4/app/notes/action/create/page.tsx"],"sourcesContent":["// import { fetchNotes } from \"@/lib/api\";\r\n// import NoteForm from \"@/components/NoteForm/NoteForm\";\r\n\r\n// const CreateNote = () => {\r\n//   //   const categories = await fetchNotes();\r\n\r\n//   return (\r\n//     <>\r\n//       <NoteForm\r\n//         onCancel={() => {\r\n//           //   console.log(\"Canceled\");\r\n//         }}\r\n//         onCreated={(data) => {\r\n//           //   console.log(\"Created note:\", note);\r\n//         }}\r\n//       />\r\n//     </>\r\n//   );\r\n// };\r\n\r\n// export default CreateNote;\r\n"],"names":[],"mappings":"AAAA,0CAA0C;AAC1C,yDAAyD;AAEzD,6BAA6B;AAC7B,gDAAgD;AAEhD,aAAa;AACb,SAAS;AACT,kBAAkB;AAClB,4BAA4B;AAC5B,0CAA0C;AAC1C,aAAa;AACb,iCAAiC;AACjC,qDAAqD;AACrD,aAAa;AACb,WAAW;AACX,UAAU;AACV,OAAO;AACP,KAAK;AAEL,6BAA6B","debugId":null}}]
+}

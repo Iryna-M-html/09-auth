@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/NoteHub.module.css [app-rsc] (css module)"],"sourcesContent":["__turbopack_context__.v({\n  \"container\": \"NoteHub-module___FeRPq__container\",\n  \"description\": \"NoteHub-module___FeRPq__description\",\n  \"main\": \"NoteHub-module___FeRPq__main\",\n  \"title\": \"NoteHub-module___FeRPq__title\",\n});\n"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA"}},
-    {"offset": {"line": 13, "column": 0}, "map": {"version":3,"sources":["file:///C:/GoIT/Projects/dz/next/next-module-3-4/app/not-found.tsx"],"sourcesContent":["import React from \"react\";\r\nimport css from \"./NoteHub.module.css\";\r\n\r\nconst NotFound = () => {\r\n  return (\r\n    <div>\r\n      <h1 className={css.title}>404 - Page not found</h1>\r\n      <p className={css.description}>\r\n        Sorry, the page you are looking for does not exist.\r\n      </p>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default NotFound;\r\n"],"names":[],"mappings":";;;;;AACA;;;AAEA,MAAM,WAAW;IACf,qBACE,8OAAC;;0BACC,8OAAC;gBAAG,WAAW,qIAAG,CAAC,KAAK;0BAAE;;;;;;0BAC1B,8OAAC;gBAAE,WAAW,qIAAG,CAAC,WAAW;0BAAE;;;;;;;;;;;;AAKrC;uCAEe","debugId":null}}]
-}

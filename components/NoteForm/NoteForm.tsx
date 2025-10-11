@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import css from "./NoteForm.module.css";
 import { createNote } from "@/lib/api";
-import { useNoteDraftStore } from "@/lib/stores/noteStore";
+import { useNoteDraftStore } from "@/lib/store/noteStore";
 import type { NoteTag } from "../../types/note";
 
 interface NoteFormProps {

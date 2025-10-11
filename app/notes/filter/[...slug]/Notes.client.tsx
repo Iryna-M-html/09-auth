@@ -50,9 +50,9 @@ export default function NotesClient({ tag }: NoteClientProps) {
             onPageChange={(selectedPage) => setPage(selectedPage)}
           />
         )}
-        <button className={css.button} onClick={openModal}>
+        {/* <button className={css.button} onClick={openModal}>
           Create note +
-        </button>
+        </button> */}
       </header>
       {isLoading && <LoadingIndicator />}
       {isError && <ErrorMessage error={error as Error} />}
@@ -62,7 +62,7 @@ export default function NotesClient({ tag }: NoteClientProps) {
       {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
       {isModalOpen && (
         <Modal onClose={closeModal} isOpen={true}>
-          <NoteForm onCancel={closeModal} onCreated={() => {}} />
+          <NoteForm onCancel={closeModal} />
         </Modal>
       )}
     </div>

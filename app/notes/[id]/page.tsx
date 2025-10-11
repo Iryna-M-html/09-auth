@@ -5,37 +5,43 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import NoteDetailsClient from "./NoteDetails.client";
+import type { Metadata } from "next";
 
 interface NoteDetailsProps {
   params: Promise<{ id: string }>;
 }
 
-export async function generateMetadata({ params }: NoteDetailsProps) {
+export async function generateMetadata({
+  params,
+}: NoteDetailsProps): Promise<Metadata> {
   const { id } = await params;
   const note = await fetchNoteById(id);
+
+  const title = `Note: ${note.title}`;
+  const description =
+    note.content?.length > 0
+      ? note.content.slice(0, 100)
+      : "View details of this note in NoteHub.";
+
+  const url = `https://notehub.example.com/notes/${id}`;
+
   return {
-    title: `Note: ${note.title}`,
-    description: note.content.slice(0, 30),
+    title,
+    description,
     openGraph: {
-      title: `Note: ${note.title}`,
-      description: note.content.slice(0, 100),
-      url: `https://notehub.com/notes/${id}`,
+      title,
+      description,
+      url,
       siteName: "NoteHub",
       images: [
         {
-          url: "https://placehold.co/1200x630",
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
           width: 1200,
           height: 630,
           alt: note.title,
         },
       ],
       type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${note.title}`,
-      description: note.content.slice(0, 3),
-      images: ["https://ac.goit.global/fullstack/react/og-meta.jpg"],
     },
   };
 }

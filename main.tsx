@@ -1,4 +1,4 @@
-import { geistSans, geistMono } from "./app/layout";
+import { roboto } from "./app/layout";
 
 export default function RootLayout({
   children,
@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={roboto.variable}>
         <header>
           <h1>Hello Note Hub</h1>
         </header>

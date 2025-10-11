@@ -1,12 +1,9 @@
-// components/Header/Header.tsx
 import css from "./Header.module.css";
 import Link from "next/link";
-// import { getCategories } from "@/lib/api";
+
 import TagsMenu from "../TagsMenu/TagsMenu";
 
 const Header = () => {
-  // const categories = await getCategories();
-
   return (
     <header className={css.header}>
       <Link href="/" aria-label="Home">
@@ -20,10 +17,6 @@ const Header = () => {
           <li>
             <TagsMenu />
           </li>
-
-          {/* <li>
-            <Link href="/notes">Notes</Link>
-          </li> */}
         </ul>
       </nav>
     </header>

@@ -18,13 +18,6 @@ export default function NoteHub() {
           and productivity.
         </p>
       </div>
-      <Image src="/test.png" alt="test" width={500} height={300} />
-      <Image
-        src="https://picsum.photos/seed/picsum/300/300"
-        alt="test"
-        width={300}
-        height={300}
-      />
     </main>
   );
 }

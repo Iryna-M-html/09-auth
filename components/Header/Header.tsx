@@ -20,9 +20,7 @@ const Header = () => {
           <li>
             <TagsMenu />
           </li>
-          <li>
-            <Link href="/profile">Profile</Link>
-          </li>
+
           {/* <li>
             <Link href="/notes">Notes</Link>
           </li> */}

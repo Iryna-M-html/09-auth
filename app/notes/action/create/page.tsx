@@ -1,36 +1,30 @@
 "use client";
 
-// import { useParams } from "next/navigation";
 import css from "./CreateNote.module.css";
 import NoteForm from "@/components/NoteForm/NoteForm";
-// import { useQuery } from "@tanstack/react-query";
-// import { fetchNoteById } from "@/lib/api";
-// import { useRouter } from "next/navigation";
-
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Create a New Note | NoteHub",
+  description:
+    "Create a new note in NoteHub. Add a title, content, and tag to organize your ideas easily.",
+  openGraph: {
+    title: "Create a New Note | NoteHub",
+    description:
+      "Start writing a new note in NoteHub. Capture your thoughts and organize them with tags.",
+    url: "https://notehub.example.com/notes/action/create",
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Create Note in NoteHub",
+      },
+    ],
+    type: "website",
+    siteName: "NoteHub",
+  },
+};
 const CreateNote = () => {
-  //   const router = useRouter();
-  //   const close = () => router.back();
-
-  //   const { id } = useParams<{ id: string }>();
-
-  //   const {
-  //     data: note,
-  //     isLoading,
-  //     error,
-  //   } = useQuery({
-  //     queryKey: ["noteHubKeyById", id],
-  //     queryFn: () => fetchNoteById(id),
-  //     refetchOnMount: false,
-  //   });
-
-  //   if (isLoading) {
-  //     return <p>Loading, please wait...</p>;
-  //   }
-
-  //   if (error || !note) {
-  //     throw error;
-  //   }
-
   return (
     <main className={css.main}>
       <div className={css.container}>

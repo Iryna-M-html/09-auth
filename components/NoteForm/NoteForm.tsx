@@ -6,16 +6,28 @@ import css from "./NoteForm.module.css";
 import { createNote } from "@/lib/api";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
 import type { NoteTag } from "../../types/note";
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 interface NoteFormProps {
   onCancel: () => void;
 }
 
 const NoteForm = ({ onCancel }: NoteFormProps) => {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const { draft, setDraft, clearDraft } = useNoteDraftStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const createNoteMutation = useMutation({
+    mutationFn: createNote,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["notes"] });
+      clearDraft();
+      router.push("/notes/filter/All");
+    },
+    onError: (error) => {
+      console.error("Error creating note:", error);
+    },
+  });
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -29,20 +41,16 @@ const NoteForm = ({ onCancel }: NoteFormProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      await createNote({
+    createNoteMutation.mutate(
+      {
         title: draft.title || "",
         content: draft.content || "",
         tag: draft.tag as NoteTag,
-      });
-
-      clearDraft();
-      router.push("/notes/filter/All");
-    } catch (error) {
-      console.error("Error creating note:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
+      },
+      {
+        onSettled: () => setIsSubmitting(false),
+      }
+    );
   };
 
   return (
@@ -105,9 +113,11 @@ const NoteForm = ({ onCancel }: NoteFormProps) => {
         <button
           type="submit"
           className={css.submitButton}
-          disabled={isSubmitting}
+          disabled={isSubmitting || createNoteMutation.isPending}
         >
-          {isSubmitting ? "Creating..." : "Create note"}
+          {isSubmitting || createNoteMutation.isPending
+            ? "Creating..."
+            : "Create note"}
         </button>
       </div>
     </form>

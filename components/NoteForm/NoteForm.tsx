@@ -7,11 +7,11 @@ import { createNote } from "@/lib/api";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
 import type { NoteTag } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-interface NoteFormProps {
-  onCancel: () => void;
-}
+// interface NoteFormProps {
+//   onCancel: () => void;
+// }
 
-const NoteForm = ({ onCancel }: NoteFormProps) => {
+const NoteForm = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { draft, setDraft, clearDraft } = useNoteDraftStore();
@@ -52,7 +52,9 @@ const NoteForm = ({ onCancel }: NoteFormProps) => {
       }
     );
   };
-
+  const handleCancel = () => {
+    router.back();
+  };
   return (
     <form className={css.form} onSubmit={handleSubmit}>
       <div className={css.formGroup}>
@@ -105,7 +107,7 @@ const NoteForm = ({ onCancel }: NoteFormProps) => {
         <button
           type="button"
           className={css.cancelButton}
-          onClick={onCancel}
+          onClick={handleCancel}
           disabled={isSubmitting}
         >
           Cancel

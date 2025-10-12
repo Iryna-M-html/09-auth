@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import LoadingIndicator from "../../../loading";
 import ErrorMessage from "./error";
 import { NoteTag } from "@/types/note";
+import Link from "next/link";
 
 interface NoteClientProps {
   tag?: NoteTag | undefined;
@@ -20,8 +21,8 @@ interface NoteClientProps {
 
 export default function NotesClient({ tag }: NoteClientProps) {
   const [page, setPage] = useState(1);
-  const [perPage] = useState(12);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const perPage = 12;
+
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm] = useDebounce(searchTerm, 500);
 
@@ -35,9 +36,6 @@ export default function NotesClient({ tag }: NoteClientProps) {
     placeholderData: keepPreviousData,
   });
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
   const totalPages = data?.totalPages ?? 1;
   return (
     <div className={css.app}>
@@ -50,9 +48,10 @@ export default function NotesClient({ tag }: NoteClientProps) {
             onPageChange={(selectedPage) => setPage(selectedPage)}
           />
         )}
-        {/* <button className={css.button} onClick={openModal}>
+
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button> */}
+        </Link>
       </header>
       {isLoading && <LoadingIndicator />}
       {isError && <ErrorMessage error={error as Error} />}
@@ -60,11 +59,6 @@ export default function NotesClient({ tag }: NoteClientProps) {
         <ErrorMessage error={new Error("No notes found.")} />
       )}
       {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
-      {isModalOpen && (
-        <Modal onClose={closeModal} isOpen={true}>
-          <NoteForm onCancel={closeModal} />
-        </Modal>
-      )}
     </div>
   );
 }

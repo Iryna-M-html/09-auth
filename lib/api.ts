@@ -2,7 +2,8 @@ import axios from "axios";
 import type { Note, NoteTag } from "../types/note";
 
 const apiClient = axios.create({
-  baseURL: "https://notehub-public.goit.study/api",
+  // baseURL: "https://notehub-public.goit.study/api",
+  baseURL: "http://localhost:3000/api",
 });
 
 apiClient.interceptors.request.use((config) => {

@@ -18,3 +18,19 @@ export async function GET(request: NextRequest, { params }: Props) {
     );
   }
 }
+interface PropsNoteid {
+  params: Promise<{ noteId: string }>;
+}
+export async function DELETE(request: NextRequest, { params }: PropsNoteid) {
+  const { noteId } = await params;
+  try {
+    const { data } = await api.get(`/notes/${noteId}`);
+    return NextResponse.json(data);
+  } catch (err) {
+    const error = err as ApiError;
+    return NextResponse.json(
+      { error: error.response?.data?.error ?? error.message },
+      { status: error.status }
+    );
+  }
+}

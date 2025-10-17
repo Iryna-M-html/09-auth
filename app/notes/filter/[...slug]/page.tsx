@@ -50,7 +50,6 @@ export async function generateMetadata({
   };
 }
 const FilterPage = async ({ params }: FiltersPageProps) => {
-  console.log("123");
   const queryClient = new QueryClient();
 
   const page = 1;

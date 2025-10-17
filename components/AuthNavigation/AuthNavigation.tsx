@@ -11,12 +11,12 @@ const AuthNavigation = () => {
   const handleClick = async () => {
     await logOut();
     clearAuth();
-    router.replace("/login");
+    router.replace("/sign-in");
   };
 
   return isAuth ? (
     <>
-      <p>{user?.userName}</p>
+      <p>{user?.email}</p>
       <button onClick={handleClick}>Logout</button>
     </>
   ) : (
@@ -26,6 +26,9 @@ const AuthNavigation = () => {
       </li>
       <li>
         <Link href="/sign-up">Sign up</Link>
+      </li>
+      <li>
+        <button onClick={handleClick}>Logout</button>
       </li>
     </>
   );

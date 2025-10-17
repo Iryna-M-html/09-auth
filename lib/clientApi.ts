@@ -56,10 +56,10 @@ export const getSingleNote = fetchNoteById;
 export interface RegisterRequest {
   email: string;
   password: string;
-  username: string;
+  //username: string;
 }
 export const register = async (body: RegisterRequest) => {
-  const { data } = await nextServerApi.post<User>(`/auth/register`, body);
+  const { data } = await nextServerApi.post<User>(`/auth/sign-up`, body);
   return data;
 };
 

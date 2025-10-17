@@ -16,6 +16,22 @@ export async function POST() {
     return NextResponse.json({});
   } catch (err) {
     const error = err as ApiError;
+
+    // --- Detailed logging for debugging ---
+    console.error("----- API POST ERROR -----");
+    //console.error("Request body:", body);
+
+    if (error.response) {
+      console.error("Response status:", error.response.status);
+      console.error("Response headers:", error.response.headers);
+      console.error("Response data:", error.response.data);
+    } else {
+      console.error("No response received, error message:", error.message);
+    }
+
+    console.error("Full error object:", error);
+    console.error("--------------------------");
+
     return NextResponse.json(
       { error: error.response?.data?.error ?? error.message },
       { status: error.status }

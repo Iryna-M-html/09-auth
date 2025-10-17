@@ -19,12 +19,12 @@ const Register = () => {
       <form action={handleAction} className={css.form}>
         <h2 className={css.formTitle}>Create Account</h2>
 
-        <div className={css.formGroup}>
+        {/* <div className={css.formGroup}>
           <label className={css.formGrouplabel}>
             User name
             <input type="text" name="userName" className={css.input} required />
           </label>
-        </div>
+        </div> */}
 
         <div className={css.formGroup}>
           <label className={css.formGrouplabel}>

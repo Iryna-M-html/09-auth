@@ -20,14 +20,14 @@ const Login = () => {
         <h2 className={css.formTitle}>Sign In</h2>
 
         <div className={css.formGroup}>
-          <label>
+          <label className={css.formGrouplabel}>
             Email
             <input type="email" name="email" className={css.input} required />
           </label>
         </div>
 
         <div className={css.formGroup}>
-          <label>
+          <label className={css.formGrouplabel}>
             Password
             <input
               type="password"

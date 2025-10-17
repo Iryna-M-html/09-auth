@@ -1,30 +1,48 @@
 "use client";
+
+import { register, RegisterRequest } from "@/lib/clientApi";
+import { useAuth } from "@/store/auth-store";
+import { useRouter } from "next/navigation";
 import css from "./SignUpPage.module.css";
-export default function SignUp() {
+
+const Register = () => {
+  const { setUser } = useAuth();
+  const router = useRouter();
+  const handleAction = async (formData: FormData) => {
+    const payload = Object.fromEntries(formData) as unknown as RegisterRequest;
+    const user = await register(payload);
+    setUser(user);
+    router.replace("/profile");
+  };
   return (
     <main className={css.mainContent}>
-      <h1 className={css.formTitle}>Sign up</h1>
-      <form className={css.form}>
+      <form action={handleAction} className={css.form}>
+        <h2 className={css.formTitle}>Create Account</h2>
+
         <div className={css.formGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            className={css.input}
-            required
-          />
+          <label>
+            User name
+            <input type="text" name="userName" className={css.input} required />
+          </label>
         </div>
 
         <div className={css.formGroup}>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            className={css.input}
-            required
-          />
+          <label>
+            Email
+            <input type="email" name="email" className={css.input} required />
+          </label>
+        </div>
+
+        <div className={css.formGroup}>
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              className={css.input}
+              required
+            />
+          </label>
         </div>
 
         <div className={css.actions}>
@@ -32,9 +50,9 @@ export default function SignUp() {
             Register
           </button>
         </div>
-
-        <p className={css.error}>Error</p>
       </form>
     </main>
   );
-}
+};
+
+export default Register;

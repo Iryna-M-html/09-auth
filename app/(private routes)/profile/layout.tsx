@@ -7,7 +7,7 @@ const ProfileLayout = ({
 }>) => {
   return (
     <div>
-      ProfileLayout
+      {/* ProfileLayout */}
       {children}
     </div>
   );

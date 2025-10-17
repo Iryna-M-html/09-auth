@@ -1,16 +1,18 @@
-// import { useRouter } from "next/navigation";
-// import { useEffect } from "react";
+"use client";
 
-// export default function AuthLayout({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   const router = useRouter();
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-//   useEffect(() => {
-//     router.refresh();
-//   }, [router]);
+export default function AuthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const router = useRouter();
 
-//   return <>{children}</>;
-// }
+  useEffect(() => {
+    console.log("Layout mounted");
+  }, []);
+
+  return <>{children}</>;
+}

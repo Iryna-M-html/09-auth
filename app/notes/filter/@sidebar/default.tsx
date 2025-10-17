@@ -1,8 +1,8 @@
 import { tags } from "@/constans/tags";
 import css from "../../../../components/SidebarNotes/SidebarNotes.module.css";
 import Link from "next/link";
-import { fetchNotes } from "@/lib/api";
-import { type Note } from "../../../../types/note";
+import { fetchNotes } from "@/lib/clientApi";
+import { type Note } from "../../../../../types/note";
 
 const SidebarNotes = () => {
   // const { notes } = await fetchNotes();

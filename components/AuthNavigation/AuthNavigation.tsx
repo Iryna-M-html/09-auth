@@ -17,7 +17,7 @@ const AuthNavigation = () => {
     try {
       await logOut();
       clearAuth();
-      router.replace("/login");
+      router.replace("/sign-in");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -47,7 +47,7 @@ const AuthNavigation = () => {
           <>
             <li className={css.navigationItem}>
               <Link
-                href="/login"
+                href="/sign-in"
                 prefetch={false}
                 className={css.navigationLink}
               >
@@ -57,7 +57,7 @@ const AuthNavigation = () => {
 
             <li className={css.navigationItem}>
               <Link
-                href="/register"
+                href="/sign-up"
                 prefetch={false}
                 className={css.navigationLink}
               >

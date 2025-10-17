@@ -68,9 +68,10 @@ export interface LoginRequest {
   password: string;
 }
 export const login = async (body: LoginRequest) => {
-  const { data } = await nextServerApi.post<User>(`/auth/login`, body);
+  const { data } = await nextServerApi.post<User>(`/auth/sign-in`, body);
   return data;
 };
+
 export const checkSession = async () => {
   const { data } = await nextServerApi.get<SessionResponse>(`/auth/session`);
   return data.success;

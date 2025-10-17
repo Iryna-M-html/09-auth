@@ -10,7 +10,7 @@ import NoteList from "@/components/NoteList/NoteList";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import { useEffect, useState } from "react";
-import LoadingIndicator from "../../../loading";
+import LoadingIndicator from "../../filter/[...slug]/loading";
 import ErrorMessage from "./error";
 import { NoteTag } from "@/types/note";
 import Link from "next/link";

@@ -5,7 +5,6 @@
   align-items: center;
   padding: 40px 16px;
   background-color: #f8f9fa; /* светлый фон страницы */
-  min-height: 100vh;
 }
 
 .form {
@@ -30,14 +29,22 @@
 }
 
 .formGroup {
-  display: flex;
+  display: block;
   flex-direction: column;
   font-size: 14px;
   font-weight: 500;
   color: #212529;
 }
+.formGrouplabel {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #212529;
 
+  display: block;
+}
 .input {
+  display: block;
   margin-top: 4px;
   padding: 10px 12px;
   font-size: 14px;

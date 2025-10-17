@@ -20,21 +20,21 @@ const Register = () => {
         <h2 className={css.formTitle}>Create Account</h2>
 
         <div className={css.formGroup}>
-          <label>
+          <label className={css.formGrouplabel}>
             User name
             <input type="text" name="userName" className={css.input} required />
           </label>
         </div>
 
         <div className={css.formGroup}>
-          <label>
+          <label className={css.formGrouplabel}>
             Email
             <input type="email" name="email" className={css.input} required />
           </label>
         </div>
 
         <div className={css.formGroup}>
-          <label>
+          <label className={css.formGrouplabel}>
             Password
             <input
               type="password"

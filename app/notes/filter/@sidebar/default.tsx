@@ -2,25 +2,15 @@ import { tags } from "@/constans/tags";
 import css from "../../../../components/SidebarNotes/SidebarNotes.module.css";
 import Link from "next/link";
 import { fetchNotes } from "@/lib/clientApi";
-import { type Note } from "../../../../../types/note";
+import { type Note } from "@/types/note";
 
 const SidebarNotes = () => {
-  // const { notes } = await fetchNotes();
   return (
     <>
       <Link href="/notes/action/create" className={css.menuLink}>
         Create note
       </Link>
-      {/* <ul>
-        <li>
-          <Link href={`/notes/filter/all`}>All notes</Link>
-        </li>
-        {notes.map((note: Note) => (
-          <li key={note.id}>
-            <Link href={`/notes/filter/${note.id}`}>{note.title}</Link>
-          </li>
-        ))}
-      </ul> */}
+
       <ul className={css.menuList}>
         {tags.map((tag) => {
           const url =

@@ -19,12 +19,12 @@ export async function GET(request: NextRequest, { params }: Props) {
   }
 }
 interface PropsNoteid {
-  params: Promise<{ noteId: string }>;
+  params: Promise<{ id: string }>;
 }
 export async function DELETE(request: NextRequest, { params }: PropsNoteid) {
-  const { noteId } = await params;
+  const { id } = await params;
   try {
-    const { data } = await api.get(`/notes/${noteId}`);
+    const { data } = await api.delete(`/notes/${id}`);
     return NextResponse.json(data);
   } catch (err) {
     const error = err as ApiError;

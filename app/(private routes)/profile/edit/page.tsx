@@ -1,7 +1,7 @@
 "use client";
 
 import css from "./EditProfilePage.module.css";
-import { editUser, EditRequest } from "@/lib/clientApi";
+import { editUser, EditRequest } from "@/lib/api/clientApi";
 import { useAuth } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
 

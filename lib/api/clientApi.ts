@@ -1,4 +1,4 @@
-import type { Note, NoteTag } from "../types/note";
+import type { Note, NoteTag } from "../../types/note";
 import { User } from "@/types/user";
 import { nextServerApi, SessionResponse } from "./api";
 
@@ -59,7 +59,7 @@ export interface RegisterRequest {
   //username: string;
 }
 export const register = async (body: RegisterRequest) => {
-  const { data } = await nextServerApi.post<User>(`/auth/sign-up`, body);
+  const { data } = await nextServerApi.post<User>(`/auth/register`, body);
   return data;
 };
 
@@ -68,7 +68,7 @@ export interface LoginRequest {
   password: string;
 }
 export const login = async (body: LoginRequest) => {
-  const { data } = await nextServerApi.post<User>(`/auth/sign-in`, body);
+  const { data } = await nextServerApi.post<User>(`/auth/login`, body);
   return data;
 };
 
@@ -87,7 +87,7 @@ export const checkSession = async () => {
 };
 
 export const getMe = async () => {
-  const { data } = await nextServerApi.get<User>(`/auth/me`);
+  const { data } = await nextServerApi.get<User>(`/users/me`);
   return data;
 };
 

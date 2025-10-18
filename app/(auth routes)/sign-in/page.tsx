@@ -1,6 +1,6 @@
 "use client";
 
-import { login, LoginRequest } from "@/lib/clientApi";
+import { login, LoginRequest } from "@/lib/api/clientApi";
 import { useAuth } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
 import css from "./SignInPage.module.css";

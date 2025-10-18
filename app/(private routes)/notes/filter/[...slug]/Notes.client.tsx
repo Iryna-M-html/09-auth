@@ -3,7 +3,7 @@
 import css from "../../../../page.module.css";
 import { useDebounce } from "use-debounce";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { fetchNotes, FetchNotesResponse } from "@/lib/clientApi";
+import { fetchNotes, FetchNotesResponse } from "@/lib/api/clientApi";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";

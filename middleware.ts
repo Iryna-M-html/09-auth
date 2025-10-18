@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { checkServerSession } from "./lib/serverApi";
+import { checkServerSession } from "./lib/api/serverApi";
 import { cookies } from "next/headers";
 import { parse } from "cookie";
 

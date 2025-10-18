@@ -3,7 +3,7 @@ import { nextServerApi, SessionResponse } from "./api";
 import { cookies } from "next/headers";
 export const getServerMe = async () => {
   const cookieStore = await cookies();
-  const { data } = await nextServerApi.get<User>(`/auth/me`, {
+  const { data } = await nextServerApi.get<User>(`/users/me`, {
     headers: { Cookie: cookieStore.toString() },
   });
   return data;

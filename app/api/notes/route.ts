@@ -38,7 +38,12 @@ export async function POST(request: NextRequest) {
   const noteData = await request.json();
 
   try {
-    const { data } = await api.post(`/notes`, noteData);
+    const cookieStore = await cookies();
+    const { data } = await api.post(`/notes`, noteData, {
+      headers: {
+        Cookie: cookieStore.toString(),
+      },
+    });
     return NextResponse.json(data);
   } catch (err) {
     const error = err as ApiError;

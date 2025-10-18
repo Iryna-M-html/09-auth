@@ -7,9 +7,6 @@ import { createNote } from "@/lib/clientApi";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
 import type { NoteTag } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-// interface NoteFormProps {
-//   onCancel: () => void;
-// }
 
 const NoteForm = () => {
   const router = useRouter();

@@ -1,6 +1,6 @@
 "use client";
 
-import css from "../../../page.module.css";
+import css from "../../../../page.module.css";
 import { useDebounce } from "use-debounce";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { fetchNotes, FetchNotesResponse } from "@/lib/clientApi";
@@ -10,7 +10,7 @@ import NoteList from "@/components/NoteList/NoteList";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import { useEffect, useState } from "react";
-import LoadingIndicator from "../../filter/[...slug]/loading";
+import LoadingIndicator from "./loading";
 import ErrorMessage from "./error";
 import { NoteTag } from "@/types/note";
 import Link from "next/link";

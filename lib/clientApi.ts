@@ -72,6 +72,15 @@ export const login = async (body: LoginRequest) => {
   return data;
 };
 
+export interface EditRequest {
+  email: string;
+  username: string;
+}
+export const editUser = async (body: EditRequest) => {
+  const { data } = await nextServerApi.patch<User>(`/users/edit`, body);
+  return data;
+};
+
 export const checkSession = async () => {
   const { data } = await nextServerApi.get<SessionResponse>(`/auth/session`);
   return data.success;

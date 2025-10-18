@@ -1,6 +1,20 @@
+"use client";
+
 import css from "./EditProfilePage.module.css";
+import { editUser, EditRequest } from "@/lib/clientApi";
+import { useAuth } from "@/lib/store/authStore";
+import { useRouter } from "next/navigation";
 
 const Edit = () => {
+  const { setUser } = useAuth();
+  const router = useRouter();
+  const handleActionEdit = async (formData: FormData) => {
+    const payload = Object.fromEntries(formData) as unknown as EditRequest;
+    const user = await editUser(payload);
+    setUser(user);
+    router.replace("/profile");
+  };
+
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>
@@ -14,10 +28,15 @@ const Edit = () => {
           className={css.avatar}
         />
 
-        <form className={css.profileInfo}>
+        <form action={handleActionEdit} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
             <label htmlFor="username">Username:</label>
-            <input id="username" type="text" className={css.input} />
+            <input
+              id="username"
+              type="text"
+              name="username"
+              className={css.input}
+            />
           </div>
 
           <p>Email: user_email@example.com</p>

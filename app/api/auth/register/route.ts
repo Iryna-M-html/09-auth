@@ -1,13 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { api, ApiError } from "../../api";
+import { api } from "../../api";
 import { cookies } from "next/headers";
 import { parse } from "cookie";
-import { Console } from "console";
-
-export async function GET(req: NextRequest) {
-  console.log("Test");
-  return NextResponse.json({ message: "ok" });
-}
+import { isAxiosError } from "axios";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -31,15 +26,22 @@ export async function POST(req: NextRequest) {
           cookieStore.set("refreshToken", parsed.refreshToken, options);
       }
 
-      return NextResponse.json(apiRes.data);
+      return NextResponse.json(apiRes.data, { status: apiRes.status });
     }
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   } catch (err) {
-    const error = err as ApiError;
+    if (isAxiosError(err)) {
+      console.error("Axios error:", err.response?.data || err.message);
+      return NextResponse.json(
+        { error: err.response?.data?.error ?? err.message },
+        { status: err.response?.status ?? 500 }
+      );
+    }
 
+    console.error("Unexpected error:", err);
     return NextResponse.json(
-      { error: error.response?.data?.error ?? error.message },
-      { status: error.status }
+      { error: "Unexpected server error" },
+      { status: 500 }
     );
   }
 }

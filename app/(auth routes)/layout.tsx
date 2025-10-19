@@ -11,8 +11,8 @@ export default function AuthLayout({
   const router = useRouter();
 
   useEffect(() => {
-    console.log("Layout mounted");
-  }, []);
+    router.refresh();
+  }, [router]);
 
   return <>{children}</>;
 }

@@ -3,7 +3,7 @@ import css from "./page.module.css";
 import Link from "next/link";
 import { useAuth } from "@/lib/store/authStore";
 const Profile = () => {
-  const { user, isAuth, clearAuth } = useAuth();
+  const { user, isAuthenticated, clearAuth } = useAuth();
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>

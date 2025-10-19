@@ -73,17 +73,17 @@ export const login = async (body: LoginRequest) => {
 };
 
 export interface EditRequest {
-  email: string;
+  // email: string;
   username: string;
 }
 export const editUser = async (body: EditRequest) => {
-  const { data } = await nextServerApi.patch<User>(`/users/edit`, body);
+  const { data } = await nextServerApi.patch<User>(`/users/me`, body);
   return data;
 };
 
-export const checkSession = async () => {
+export const checkSession = async (): Promise<SessionResponse> => {
   const { data } = await nextServerApi.get<SessionResponse>(`/auth/session`);
-  return data.success;
+  return data;
 };
 
 export const getMe = async () => {

@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
-import { api, ApiError } from "../../api";
+import { api } from "../../api";
 import { cookies } from "next/headers";
 import { parse } from "cookie";
+import { isAxiosError } from "axios";
+import { logErrorResponse } from "../../auth/utils/logErrorResponse";
 
 export async function GET() {
   const cookieStore = await cookies();
@@ -37,9 +39,15 @@ export async function GET() {
         return NextResponse.json({ success: true });
       }
       return NextResponse.json({ success: false });
-    } catch {
+    } catch (err) {
+      if (isAxiosError(err)) {
+        logErrorResponse(err);
+      } else {
+        console.error("Unexpected error:", err);
+      }
       return NextResponse.json({ success: false });
     }
   }
+
   return NextResponse.json({ success: false });
 }

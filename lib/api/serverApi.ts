@@ -58,3 +58,12 @@ export async function fetchNotes(
   });
   return response.data;
 }
+export const fetchNoteById = async (id: string): Promise<Note> => {
+  if (!id) {
+    throw new Error("Note ID is required");
+  }
+  const response = await nextServerApi.get<Note>(`/notes/${id}`);
+  return response.data;
+};
+
+export const getSingleNote = fetchNoteById;

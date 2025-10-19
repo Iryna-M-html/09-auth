@@ -1,35 +1,39 @@
 import { NextResponse, NextRequest } from "next/server";
-import { api, ApiError } from "../api";
+import { api } from "../api";
 import { cookies } from "next/headers";
-
+import { isAxiosError } from "axios";
+import { logErrorResponse } from "@/app/api/auth/utils/logErrorResponse";
 export async function GET(request: NextRequest) {
-  const page = request.nextUrl.searchParams.get("page");
-  const perPage = request.nextUrl.searchParams.get("perPage");
-  const search = request.nextUrl.searchParams.get("search");
-  const tag = request.nextUrl.searchParams.get("tag");
+  const page = request.nextUrl.searchParams.get("page") ?? "1";
+  const perPage = request.nextUrl.searchParams.get("perPage") ?? "10";
+  const search = request.nextUrl.searchParams.get("search") ?? "";
+  const tag = request.nextUrl.searchParams.get("tag") ?? "";
 
-  console.log("Query parameters:", {
-    page,
-    perPage,
-    search,
-    tag,
-  });
+  const params: Record<string, string> = { page, perPage };
+  if (search) params.search = search;
+  if (tag && tag !== "All") params.tag = tag;
 
   try {
     const cookieStore = await cookies();
-    const { data } = await api.get("/notes", {
-      params: { page, perPage, search, tag },
-      headers: {
-        Cookie: cookieStore.toString(),
-      },
+    const apiRes = await api.get("/notes", {
+      params,
+      headers: { Cookie: cookieStore.toString() },
     });
 
-    return NextResponse.json(data);
+    return NextResponse.json(apiRes.data, { status: apiRes.status });
   } catch (err) {
-    const error = err as ApiError;
+    if (isAxiosError(err)) {
+      logErrorResponse(err);
+      return NextResponse.json(
+        { error: err.response?.data?.error ?? err.message },
+        { status: err.response?.status ?? 500 }
+      );
+    }
+
+    console.error("Unexpected error:", err);
     return NextResponse.json(
-      { error: error.response?.data?.error ?? error.message },
-      { status: error.status }
+      { error: "Unexpected server error" },
+      { status: 500 }
     );
   }
 }
@@ -39,17 +43,24 @@ export async function POST(request: NextRequest) {
 
   try {
     const cookieStore = await cookies();
-    const { data } = await api.post(`/notes`, noteData, {
-      headers: {
-        Cookie: cookieStore.toString(),
-      },
+    const apiRes = await api.post(`/notes`, noteData, {
+      headers: { Cookie: cookieStore.toString() },
     });
-    return NextResponse.json(data);
+
+    return NextResponse.json(apiRes.data, { status: apiRes.status });
   } catch (err) {
-    const error = err as ApiError;
+    if (isAxiosError(err)) {
+      logErrorResponse(err);
+      return NextResponse.json(
+        { error: err.response?.data?.error ?? err.message },
+        { status: err.response?.status ?? 500 }
+      );
+    }
+
+    console.error("Unexpected error:", err);
     return NextResponse.json(
-      { error: error.response?.data?.error ?? error.message },
-      { status: error.status }
+      { error: "Unexpected server error" },
+      { status: 500 }
     );
   }
 }

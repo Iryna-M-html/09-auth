@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { api, ApiError } from "../../api";
+import { api } from "../../api";
 import { cookies } from "next/headers";
-
+import { isAxiosError } from "axios";
+import { logErrorResponse } from "../../auth/utils/logErrorResponse";
 export async function POST() {
   const cookieStore = await cookies();
   try {
@@ -13,28 +14,20 @@ export async function POST() {
 
     cookieStore.delete("accessToken");
     cookieStore.delete("refreshToken");
-    return NextResponse.json({});
+    return NextResponse.json({}, { status: 200 });
   } catch (err) {
-    const error = err as ApiError;
-
-    // --- Detailed logging for debugging ---
-    console.error("----- API POST ERROR -----");
-    //console.error("Request body:", body);
-
-    if (error.response) {
-      console.error("Response status:", error.response.status);
-      console.error("Response headers:", error.response.headers);
-      console.error("Response data:", error.response.data);
-    } else {
-      console.error("No response received, error message:", error.message);
+    if (isAxiosError(err)) {
+      logErrorResponse(err);
+      return NextResponse.json(
+        { error: err.response?.data?.error ?? err.message },
+        { status: err.response?.status ?? 500 }
+      );
     }
 
-    console.error("Full error object:", error);
-    console.error("--------------------------");
-
+    console.error("Unexpected error:", err);
     return NextResponse.json(
-      { error: error.response?.data?.error ?? error.message },
-      { status: error.status }
+      { error: "Unexpected server error" },
+      { status: 500 }
     );
   }
 }

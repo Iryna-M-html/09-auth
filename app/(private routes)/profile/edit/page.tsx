@@ -1,17 +1,19 @@
 "use client";
-
+import Image from "next/image";
 import css from "./EditProfilePage.module.css";
 import { editUser, EditRequest } from "@/lib/api/clientApi";
 import { useAuth } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
 
 const Edit = () => {
-  const { setUser } = useAuth();
+  const { user, setUser } = useAuth();
   const router = useRouter();
   const handleActionEdit = async (formData: FormData) => {
-    const payload = Object.fromEntries(formData) as unknown as EditRequest;
-    const user = await editUser(payload);
-    setUser(user);
+    const username = formData.get("username") as string;
+    const payload: EditRequest = { username };
+
+    const updatedUser = await editUser(payload);
+    setUser(updatedUser);
     router.replace("/profile");
   };
 
@@ -20,13 +22,18 @@ const Edit = () => {
       <div className={css.profileCard}>
         <h1 className={css.formTitle}>Edit Profile</h1>
 
-        <img
-          src="avatar"
-          alt="User Avatar"
-          width={120}
-          height={120}
-          className={css.avatar}
-        />
+        <div className={css.avatarWrapper}>
+          <Image
+            src={
+              user?.avatar ??
+              "https://ac.goit.global/fullstack/react/default-avatar.jpg"
+            }
+            alt="User Avatar"
+            width={120}
+            height={120}
+            className={css.avatar}
+          />
+        </div>
 
         <form action={handleActionEdit} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
@@ -36,16 +43,23 @@ const Edit = () => {
               type="text"
               name="username"
               className={css.input}
+              defaultValue={user?.username}
+              required
             />
           </div>
 
-          <p>Email: user_email@example.com</p>
+          <p>Email: {user?.email}</p>
 
           <div className={css.actions}>
             <button type="submit" className={css.saveButton}>
               Save
             </button>
-            <button type="button" className={css.cancelButton}>
+
+            <button
+              type="button"
+              className={css.cancelButton}
+              onClick={() => router.back()}
+            >
               Cancel
             </button>
           </div>

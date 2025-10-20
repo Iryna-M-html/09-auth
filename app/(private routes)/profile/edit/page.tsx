@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import css from "./EditProfilePage.module.css";
-import { editUser, EditRequest } from "@/lib/api/clientApi";
+import { editUser } from "@/lib/api/clientApi";
 import { useAuth } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
+import { EditRequest } from "@/types/user";
 
 const Edit = () => {
   const { user, setUser } = useAuth();

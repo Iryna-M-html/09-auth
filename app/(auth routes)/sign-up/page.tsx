@@ -1,9 +1,10 @@
 "use client";
 
-import { register, RegisterRequest } from "@/lib/api/clientApi";
+import { register } from "@/lib/api/clientApi";
 import { useAuth } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
 import css from "./SignUpPage.module.css";
+import { RegisterRequest } from "@/types/user";
 
 const Register = () => {
   const { setUser } = useAuth();

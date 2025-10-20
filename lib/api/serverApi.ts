@@ -36,33 +36,34 @@ export interface FetchNotesResponse {
   totalPages: number;
 }
 
-interface FetchNotesParams {
-  page?: number;
-  search?: string;
-  perPage?: number;
-}
-
 export interface NewNotePayload {
   title: string;
   content: string;
   tag: NoteTag;
 }
+
 export async function fetchNotes(
   page = 1,
   perPage = 12,
   search = "",
   tag?: NoteTag
 ): Promise<FetchNotesResponse> {
+  const cookieStore = await cookies();
   const response = await nextServerApi.get<FetchNotesResponse>("/notes", {
     params: { page, perPage, search, tag },
+    headers: { Cookie: cookieStore.toString() },
   });
   return response.data;
 }
+
 export const fetchNoteById = async (id: string): Promise<Note> => {
   if (!id) {
     throw new Error("Note ID is required");
   }
-  const response = await nextServerApi.get<Note>(`/notes/${id}`);
+  const cookieStore = await cookies();
+  const response = await nextServerApi.get<Note>(`/notes/${id}`, {
+    headers: { Cookie: cookieStore.toString() },
+  });
   return response.data;
 };
 

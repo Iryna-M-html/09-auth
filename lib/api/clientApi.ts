@@ -1,5 +1,5 @@
 import type { Note, NoteTag } from "../../types/note";
-import { User } from "@/types/user";
+import { User, RegisterRequest, LoginRequest, EditRequest } from "@/types/user";
 import { nextServerApi, SessionResponse } from "./api";
 
 export interface FetchNotesResponse {
@@ -53,29 +53,29 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
 
 export const getSingleNote = fetchNoteById;
 
-export interface RegisterRequest {
-  email: string;
-  password: string;
-  //username: string;
-}
+// export interface RegisterRequest {
+//   email: string;
+//   password: string;
+//   //username: string;
+// }
 export const register = async (body: RegisterRequest) => {
   const { data } = await nextServerApi.post<User>(`/auth/register`, body);
   return data;
 };
 
-export interface LoginRequest {
-  email: string;
-  password: string;
-}
+// export interface LoginRequest {
+//   email: string;
+//   password: string;
+// }
 export const login = async (body: LoginRequest) => {
   const { data } = await nextServerApi.post<User>(`/auth/login`, body);
   return data;
 };
 
-export interface EditRequest {
-  // email: string;
-  username: string;
-}
+// export interface EditRequest {
+//   // email: string;
+//   username: string;
+// }
 export const editUser = async (body: EditRequest) => {
   const { data } = await nextServerApi.patch<User>(`/users/me`, body);
   return data;

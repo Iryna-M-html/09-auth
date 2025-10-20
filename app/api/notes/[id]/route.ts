@@ -4,90 +4,68 @@ import { cookies } from "next/headers";
 import { isAxiosError } from "axios";
 import { logErrorResponse } from "@/app/api/auth/utils/logErrorResponse";
 
-interface Props {
-  params: Promise<{ id: string }>;
-}
-
-export async function GET(request: NextRequest, { params }: Props) {
-  const { id } = await params;
+export async function GET(request: NextRequest) {
   try {
     const cookieStore = await cookies();
-    const apiRes = await api.get(`/notes/${id}`, {
+    const search = request.nextUrl.searchParams.get("search") ?? "";
+    const page = Number(request.nextUrl.searchParams.get("page") ?? 1);
+    const rawTag = request.nextUrl.searchParams.get("tag") ?? "";
+    const tag = rawTag === "All" ? "" : rawTag;
+
+    const res = await api("/notes", {
+      params: {
+        ...(search !== "" && { search }),
+        page,
+        perPage: 12,
+        ...(tag && { tag }),
+      },
       headers: {
         Cookie: cookieStore.toString(),
       },
     });
-    return NextResponse.json(apiRes.data, { status: apiRes.status });
-  } catch (err) {
-    if (isAxiosError(err)) {
-      logErrorResponse(err);
+
+    return NextResponse.json(res.data, { status: res.status });
+  } catch (error) {
+    if (isAxiosError(error)) {
+      logErrorResponse(error.response?.data);
       return NextResponse.json(
-        { error: err.response?.data?.error ?? err.message },
-        { status: err.response?.status ?? 500 }
+        { error: error.message, response: error.response?.data },
+        { status: error.status }
       );
     }
-
-    console.error("Unexpected error:", err);
+    logErrorResponse({ message: (error as Error).message });
     return NextResponse.json(
-      { error: "Unexpected server error" },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }
 }
 
-interface PropsNoteid {
-  params: Promise<{ id: string }>;
-}
-
-export async function DELETE(request: NextRequest, { params }: PropsNoteid) {
-  const { id } = await params;
+export async function POST(request: NextRequest) {
   try {
     const cookieStore = await cookies();
-    const apiRes = await api.delete(`/notes/${id}`, {
+
+    const body = await request.json();
+
+    const res = await api.post("/notes", body, {
       headers: {
         Cookie: cookieStore.toString(),
+        "Content-Type": "application/json",
       },
     });
-    return NextResponse.json(apiRes.data, { status: apiRes.status });
-  } catch (err) {
-    if (isAxiosError(err)) {
-      logErrorResponse(err);
+
+    return NextResponse.json(res.data, { status: res.status });
+  } catch (error) {
+    if (isAxiosError(error)) {
+      logErrorResponse(error.response?.data);
       return NextResponse.json(
-        { error: err.response?.data?.error ?? err.message },
-        { status: err.response?.status ?? 500 }
+        { error: error.message, response: error.response?.data },
+        { status: error.status }
       );
     }
-
-    console.error("Unexpected error:", err);
+    logErrorResponse({ message: (error as Error).message });
     return NextResponse.json(
-      { error: "Unexpected server error" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function PATCH(request: NextRequest, { params }: PropsNoteid) {
-  const { id } = await params;
-  const cookieStore = await cookies();
-  const body = await request.json();
-
-  try {
-    const apiRes = await api.patch(`/notes/${id}`, body, {
-      headers: { Cookie: cookieStore.toString() },
-    });
-    return NextResponse.json(apiRes.data, { status: apiRes.status });
-  } catch (err) {
-    if (isAxiosError(err)) {
-      logErrorResponse(err);
-      return NextResponse.json(
-        { error: err.response?.data?.error ?? err.message },
-        { status: err.response?.status ?? 500 }
-      );
-    }
-
-    console.error("Unexpected error:", err);
-    return NextResponse.json(
-      { error: "Unexpected server error" },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

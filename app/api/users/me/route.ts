@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { api } from "../../api";
 import { cookies } from "next/headers";
 import { isAxiosError } from "axios";
-import { logErrorResponse } from "@/app/api/auth/utils/logErrorResponse";
+import { logErrorResponse } from "@/app/api/auth/_utils/utils";
 export const dynamic = "force-dynamic";
 
 export async function GET() {

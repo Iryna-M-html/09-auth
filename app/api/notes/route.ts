@@ -2,10 +2,10 @@ import { NextResponse, NextRequest } from "next/server";
 import { api } from "../api";
 import { cookies } from "next/headers";
 import { isAxiosError } from "axios";
-import { logErrorResponse } from "@/app/api/auth/utils/logErrorResponse";
+import { logErrorResponse } from "@/app/api/auth/_utils/utils";
 export async function GET(request: NextRequest) {
   const page = request.nextUrl.searchParams.get("page") ?? "1";
-  const perPage = request.nextUrl.searchParams.get("perPage") ?? "10";
+  const perPage = request.nextUrl.searchParams.get("perPage") ?? "12";
   const search = request.nextUrl.searchParams.get("search") ?? "";
   const tag = request.nextUrl.searchParams.get("tag") ?? "";
 
